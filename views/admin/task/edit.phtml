@@ -1,0 +1,36 @@
+<?php
+/**
+ * @var array $task
+ * @var array $user
+ */
+$errors = $_GET['errors'] ?? [];
+?>
+<div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+        <h1 class="h3 mb-3 font-weight-normal">Edit tasks</h1>
+        <form class="form-signin" method="post">
+            <div class="form-group mb-3">
+                <label for="title">Title</label>
+                <input type="text" id="title" class="form-control" name="title" placeholder="Title" value="<?= $task['title'] ?>">
+            </div>
+            <div class="form-group mb-3">
+                <label for="note">Note</label>
+                <textarea rows="5" type="text" id="note" class="form-control" name="note" placeholder="Note"><?= $task['note'] ?></textarea>
+            </div>
+            <div class="form-group mb-3">
+                <label for="Title">Time</label>
+                <input type="datetime-local" id="time" class="form-control" name="time" placeholder="Time" value="<?= $task['time'] ?>">
+            </div>
+            <?php if (!empty($errors)): ?>
+                <div class="alert alert-danger">
+                    <?php foreach ($errors as $error): ?>
+                        <?= $error; ?><br>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <input type="hidden" name="id" value="<?= $task['id'] ?>">
+            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Save</button>
+            <a href="index.php?page=task&action=index" class="btn btn-secondary"><i class="fa fa-backward"></i> Go Back</a>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+RewriteRule ^\w+(/\w+)*$ index.php [L]
+# RewriteRule ^(\w+)/(\w+)$ index.php?page=$1&action=$2 [L]

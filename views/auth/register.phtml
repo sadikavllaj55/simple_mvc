@@ -1,0 +1,41 @@
+<?php
+/**
+ * @var array $roles Roles
+ */
+
+$errors = $_GET['errors'] ?? [];
+?>
+<div class="row" style="justify-content: center">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+        <h1 class="h3 mb-3 text-center">Please sign in</h1>
+        <form class="form-signin p-4 rounded-3 shadow-sm" method="post" style="background: #fff" action="index.php?page=main&action=register">
+            <div class="form-group">
+                <label for="inputUsername">Username</label>
+                <input type="text" id="inputUsername" class="form-control mb-3" name="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail">Email address</label>
+                <input type="text" id="inputEmail" class="form-control mb-3" name="email" placeholder="Email address">
+            </div>
+            <div class="form-group">
+                <label for="inputPassword">Password</label>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password">
+                <small id="passwordHint" class="form-text text-muted">Password should contain at least one capital letter and a number.</small>
+            </div>
+            <div class="form-group">
+                <label for="inputPasswordRepeat">Password Repeat</label>
+                <input type="password" id="inputPasswordRepeat" class="form-control mb-3" name="password_repeat" placeholder="Password Repeat">
+                <small id="passwordRepeatHint" class="form-text text-muted">Value should match the password field.</small>
+            </div>
+            <?php if (!empty($errors)): ?>
+                <div class="alert alert-danger">
+                    <?php foreach ($errors as $error): ?>
+                        <?= $error; ?><br>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button><br>
+            <small>Already registered? Sign in <a href="index.php?action=login">here</a>.</small>
+        </form>
+    </div>
+</div>

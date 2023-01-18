@@ -1,0 +1,42 @@
+<?php
+/**
+ * @var array $errors
+ */
+$errors = $_GET['errors'] ?? [];
+if (count($errors) > 0) {
+    $post_data = $_SESSION['edit_post'];
+    unset($_SESSION['edit_post']);
+} else {
+    $post_data = [
+        'title' => '',
+        'note' => '',
+        'time' => '',
+    ];
+}
+?>
+
+<h2>Create new task</h2>
+
+<form method="post">
+    <div class="form-group mb-3">
+        <label for="titleInput">Title</label>
+        <input type="text" id="titleInput" class="form-control" name="title" placeholder="Title" value="<?= $post_data['title'] ?>">
+    </div>
+    <div class="form-group mb-3">
+        <label for="descriptionInput">Note</label>
+        <textarea rows="4" id="descriptionInput" class="form-control" name="note" placeholder="Note (optional)"><?= $post_data['note'] ?></textarea>
+    </div>
+    <div class="form-group mb-3">
+        <label for="titleInput">Time</label>
+        <input type="datetime-local" id="titleInput" class="form-control" name="time" placeholder="Taks time (optional)" value="<?= $post_data['time'] ?>">
+    </div>
+    <?php if (!empty($errors)): ?>
+        <div class="alert alert-danger">
+            <?php foreach ($errors as $error): ?>
+                <?= $error; ?><br>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+    <button class="btn btn-success" type="submit"><i class="fa fa-plus"></i> Create</button>
+    <a href="index.php?page=task" class="btn btn-secondary"><i class="fa fa-backward"></i> Go Back</a>
+</form>
